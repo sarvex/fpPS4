@@ -9,8 +9,9 @@ game = ""
 #create open fpps4 dialog
 def open_fpps4():
     global fpps4
-    file_path = tkinter.filedialog.askopenfilename(title="Select the fpps4.exe", filetypes=[("Applications", "*.exe")])
-    if file_path:
+    if file_path := tkinter.filedialog.askopenfilename(
+        title="Select the fpps4.exe", filetypes=[("Applications", "*.exe")]
+    ):
         fpps4_path_label['text'] = file_path
         fpps4 = file_path
     else:
@@ -18,8 +19,9 @@ def open_fpps4():
 #create open game dialog
 def open_game():
     global game
-    file_path = tkinter.filedialog.askdirectory(title="Select the games Folder")
-    if file_path:
+    if file_path := tkinter.filedialog.askdirectory(
+        title="Select the games Folder"
+    ):
         game_path_label['text'] = file_path
         game = file_path
     else:
@@ -42,8 +44,8 @@ def rungame():
     if game == "":
         open_game()
     if game != "" and fpps4 != "":
-        print(fpps4 + " -e " + game + "/eboot.bin")
-        os.system(fpps4 + " -e " + game + "/eboot.bin") 
+        print(f"{fpps4} -e {game}/eboot.bin")
+        os.system(f"{fpps4} -e {game}/eboot.bin")
     else:
         tkinter.messagebox.showinfo(title="Error!", message="Please select a game and the fpPS4 folder!")
 
